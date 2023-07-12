@@ -66,11 +66,18 @@ input[type="text"] {
 
 input[type="button"] {
 
-    width: 70px;
+    width: 100px;
     height: 30px;
     border: 0;
     border-radius: 10px;
     cursor: pointer;
+    transition: 0.2s
+}
+
+input[type="button"]:hover {
+    width: 105px;
+    height: 33px;
+    
 }
 
 input[type="button"]:active {
