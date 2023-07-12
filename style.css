@@ -84,3 +84,12 @@ input[type="button"]:active {
 
     background-color: rgb(187, 187, 187);
 }
+
+li {
+    color: white;
+    margin-top: 15px;
+}
+
+ul {
+    margin-top: 50px;
+}

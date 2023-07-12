@@ -125,16 +125,19 @@ const jobs = [
   },
 ]
 
-// creo una funzione che da risult  tra due paramentri
 
 
 
 
 
+// PARTE 1
+
+let array = {}
+const result = []
 
 function Search(titleQuery, locationQuery) {
 
-  const result = []
+  
   let count = 0
   
   for (let i = 0; i < jobs.length; i++) {
@@ -147,10 +150,11 @@ function Search(titleQuery, locationQuery) {
         
       count = count + 1
         result.push(jobs[i])
-    }
+
+    } 
     
   }
-  let array = {
+    array = {
     result, count
     
   }
@@ -158,9 +162,42 @@ function Search(titleQuery, locationQuery) {
   
 } 
 
-  const data = Search("Applications", "US")
-  console.log(data)
+ //const data = Search("dev", "us")
+ //console.log(data)
 
 
+// PARTE 2
+
+function lista() {
+  let newOL = document.createElement("ol")
+  let body = document.querySelector("body")
+  body.appendChild(newOL)
+
+  for (let i = 0; i < result.length; i++) {
+    
+    let text_lavoro = "LAVORO" + " " + result[i].title
+    let text_luogo = "LUOGO:" + " " + result[i].location
+    let newLI = document.createElement("li")
+    newOL.appendChild(newLI)
+    let newUL = document.createElement("ul")
+    newLI.appendChild(newUL)
+    let newLI_title = document.createElement("li")
+    newUL.appendChild(newLI_title)
+    newLI_title.innerText = text_lavoro
+    let newLI_position = document.createElement("li")
+    newUL.appendChild(newLI_position)
+    newLI_position.innerText = text_luogo
+    
+
+    
+  }
+}
+
+function Click() {
+ let titolo = document.querySelector("#title_type")
+ let luogo = document.querySelector("#location_type")
+ Search(titolo.value, luogo.value) 
+ lista()
+}
 
   
