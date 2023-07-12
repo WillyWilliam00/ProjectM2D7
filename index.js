@@ -126,27 +126,41 @@ const jobs = [
 ]
 
 // creo una funzione che da risult  tra due paramentri
-let TitleQueryLower = " "
-let LocationQueryLower = " "
-let OnlyTitle = " "
-let OnlyLocationLower = " "
+
+
+
+
 
 
 function Search(titleQuery, locationQuery) {
-  TitleQueryLower = titleQuery.toLowerCase() 
-  LocationQueryLower = locationQuery.toLowerCase()
+
+  const result = []
+  let count = 0
+  
   for (let i = 0; i < jobs.length; i++) {
-    OnlyTitle = jobs[i].title
-    OnlyLocation = jobs[i].location
     
-    if (OnlyTitle.includes(titleQuery) && OnlyLocation.includes(locationQuery)){
-
-    console.log(jobs[i]) }
-
+    const OnlyTitleLower = jobs[i].title.toLowerCase()
+    const OnlyLocationLower = jobs[i].location.toLowerCase()
+    
+    
+    if (OnlyTitleLower.includes(titleQuery.toLowerCase()) && OnlyLocationLower.includes(locationQuery.toLowerCase())){
+        
+      count = count + 1
+        result.push(jobs[i])
     }
+    
   }
+  let array = {
+    result, count
+    
+  }
+  return array
+  
+} 
 
-
-  const data = Search("Dev", "US")
-
+  const data = Search("Applications", "US")
   console.log(data)
+
+
+
+  
