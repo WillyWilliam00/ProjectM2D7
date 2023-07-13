@@ -175,7 +175,7 @@ const Lista = function () {
       newOL.appendChild(newP)
 
   // se gli input non vengono compilati restituisci p 
-    if ((titolo.value == "")&&(luogo.value == "")) {
+    if ((titolo.value == "")||(luogo.value == "")) {
       newP.innerText = "Compila correttamente tutti i campi!"
 
     } else if (risultati.length === 0){

@@ -68,16 +68,15 @@ input[type="button"] {
 
     width: 100px;
     height: 30px;
-    border: 0;
+    border: 0px; 
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.2s
+    
 }
 
 input[type="button"]:hover {
-    width: 105px;
-    height: 33px;
-    
+     
+    border: 2px solid;
 }
 
 input[type="button"]:active {
@@ -92,4 +91,15 @@ li {
 
 ul {
     margin-top: 50px;
+    
+}
+
+ol {
+    padding: 0;
+}
+
+ol p {
+
+    color: white;
+    text-align: center;
 }
