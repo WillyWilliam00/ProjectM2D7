@@ -126,50 +126,68 @@ const jobs = [
 ]
 
 // PARTE 1
-let array = {}
-const result = []
-let count = 0
+ 
+// creo una funzione Search che dati due parametri mi restituisce un oggetto contenente i lavori selezionati
 
 function Search(titleQuery, locationQuery) {
+  let object = {}
+  const result = []
+  let count = 0
   for (let i = 0; i < jobs.length; i++) {
     const OnlyTitleLower = jobs[i].title.toLowerCase()
     const OnlyLocationLower = jobs[i].location.toLowerCase()
-    if (OnlyTitleLower.includes(titleQuery.toLowerCase()) && OnlyLocationLower.includes(locationQuery.toLowerCase())){
+    if (OnlyTitleLower.includes(titleQuery.toLowerCase()) && OnlyLocationLower.includes(locationQuery.toLowerCase())) {
       count = count + 1
       result.push(jobs[i])
-    } 
+    }
   }
-    array = {
-    result, count
-  }
-   // return array
-} 
- //const data = Search("dev", "us")
- //console.log(data)
+  object = {
+  result, count }
+  return object 
+  
+  
+}
+//const data = Search("dev", "us")
+//console.log(data)
 
- // PARTE 2
+// PARTE 2  
 
+// creo una const newOL per tracciare la OL che poi verrà riempita con i lavori trovati con la funzione Search
 const newOL = document.querySelector("ol")
 
-const Lista = function (){
-  
-  newOL.innerHTML = "";
+// creo una funzione lista che crei una lista contenente i lavori trovati con la funzione search
+const Lista = function () {
+ 
+    // cancello la lista ad ogni click
+    newOL.innerHTML = "";
+    // creo una variabile x ogni input text 
+    let titolo = document.querySelector("#title_type")
+    let luogo = document.querySelector("#location_type")
+    // la funzione search iterà un array contenente i lavori trovati
+    let data = Search(titolo.value, luogo.value)
+    // estrapolo i lavori dall' oggetto ottenuto dalla funzione search
+    let risultati = data.result
+    // creo un ciclo per scrivere nella lista ogni lavoro trovato da Search
+    for (let i = 0; i < risultati.length; i++) {
 
-  let titolo = document.querySelector("#title_type")
-  let luogo = document.querySelector("#location_type")
-  Search(titolo.value, luogo.value) 
+    let text_lavoro = "LAVORO" + " " + risultati[i].title
+    let text_luogo = "LUOGO:" + " " + risultati[i].location
+    let newLI = document.createElement("li")
+    newOL.appendChild(newLI)
+    let newUL = document.createElement("ul")
+    newLI.appendChild(newUL)
+    let newLI_title = document.createElement("li")
+    newUL.appendChild(newLI_title)
+    newLI_title.innerText = text_lavoro
+    let newLI_position = document.createElement("li")
+    newUL.appendChild(newLI_position)
+    newLI_position.innerText = text_luogo
+    
 
-  for (let i = 0; i < result.length; i++) {
-  
-  let text_lavoro = "LAVORO" + " " + result[i].title
-  let text_luogo = "LUOGO:" + " " + result[i].location
-  let newLI = document.createElement("li")
-  newOL.appendChild(newLI)
-  newLI.innerHTML = text_lavoro + "<br>" + text_luogo
-  
   }
 }
-  
-let button = document.querySelector("input[type=button]") 
 
+// creo variabile per tracciare il bottone
+let button = document.querySelector("input[type=button]")
+// creo un event listener con la funzione Lista 
 button.addEventListener("click", Lista)
