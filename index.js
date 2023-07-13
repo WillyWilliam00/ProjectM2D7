@@ -125,55 +125,36 @@ const jobs = [
   },
 ]
 
-
-
-
-
-
 // PARTE 1
-
 let array = {}
 const result = []
+let count = 0
 
 function Search(titleQuery, locationQuery) {
-
-  
-  let count = 0
-  
   for (let i = 0; i < jobs.length; i++) {
-    
     const OnlyTitleLower = jobs[i].title.toLowerCase()
     const OnlyLocationLower = jobs[i].location.toLowerCase()
-    
-    
     if (OnlyTitleLower.includes(titleQuery.toLowerCase()) && OnlyLocationLower.includes(locationQuery.toLowerCase())){
-        
       count = count + 1
-        result.push(jobs[i])
-
+      result.push(jobs[i])
     } 
-    
   }
     array = {
     result, count
-    
   }
-  return array
-  
+   // return array
 } 
-
  //const data = Search("dev", "us")
  //console.log(data)
 
+ // PARTE 2
 
-// PARTE 2
-
-let newOL = document.querySelector("ol")
-
+const newOL = document.querySelector("ol")
 
 const Lista = function (){
   
   newOL.innerHTML = "";
+
   let titolo = document.querySelector("#title_type")
   let luogo = document.querySelector("#location_type")
   Search(titolo.value, luogo.value) 
@@ -184,26 +165,11 @@ const Lista = function (){
   let text_luogo = "LUOGO:" + " " + result[i].location
   let newLI = document.createElement("li")
   newOL.appendChild(newLI)
-  let newUL = document.createElement("ul")
-  newLI.appendChild(newUL)
-  let newLI_title = document.createElement("li")
-  newUL.appendChild(newLI_title)
-  newLI_title.innerText = text_lavoro
-  let newLI_position = document.createElement("li")
-  newUL.appendChild(newLI_position)
-  newLI_position.innerText = text_luogo
+  newLI.innerHTML = text_lavoro + "<br>" + text_luogo
   
   }
 }
   
-
-  
-
-
-
-
-
 let button = document.querySelector("input[type=button]") 
 
 button.addEventListener("click", Lista)
-  
