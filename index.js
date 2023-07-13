@@ -168,36 +168,42 @@ function Search(titleQuery, locationQuery) {
 
 // PARTE 2
 
-function lista() {
-  let newOL = document.createElement("ol")
-  let body = document.querySelector("body")
-  body.appendChild(newOL)
+let newOL = document.querySelector("ol")
+
+
+const Lista = function (){
+  
+  newOL.innerHTML = "";
+  let titolo = document.querySelector("#title_type")
+  let luogo = document.querySelector("#location_type")
+  Search(titolo.value, luogo.value) 
 
   for (let i = 0; i < result.length; i++) {
-    
-    let text_lavoro = "LAVORO" + " " + result[i].title
-    let text_luogo = "LUOGO:" + " " + result[i].location
-    let newLI = document.createElement("li")
-    newOL.appendChild(newLI)
-    let newUL = document.createElement("ul")
-    newLI.appendChild(newUL)
-    let newLI_title = document.createElement("li")
-    newUL.appendChild(newLI_title)
-    newLI_title.innerText = text_lavoro
-    let newLI_position = document.createElement("li")
-    newUL.appendChild(newLI_position)
-    newLI_position.innerText = text_luogo
-    
-
-    
+  
+  let text_lavoro = "LAVORO" + " " + result[i].title
+  let text_luogo = "LUOGO:" + " " + result[i].location
+  let newLI = document.createElement("li")
+  newOL.appendChild(newLI)
+  let newUL = document.createElement("ul")
+  newLI.appendChild(newUL)
+  let newLI_title = document.createElement("li")
+  newUL.appendChild(newLI_title)
+  newLI_title.innerText = text_lavoro
+  let newLI_position = document.createElement("li")
+  newUL.appendChild(newLI_position)
+  newLI_position.innerText = text_luogo
+  
   }
 }
+  
 
-function Click() {
- let titolo = document.querySelector("#title_type")
- let luogo = document.querySelector("#location_type")
- Search(titolo.value, luogo.value) 
- lista()
-}
+  
 
+
+
+
+
+let button = document.querySelector("input[type=button]") 
+
+button.addEventListener("click", Lista)
   
