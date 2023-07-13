@@ -136,7 +136,7 @@ function Search(titleQuery, locationQuery) {
   for (let i = 0; i < jobs.length; i++) {
     const OnlyTitleLower = jobs[i].title.toLowerCase()
     const OnlyLocationLower = jobs[i].location.toLowerCase()
-    if (OnlyTitleLower.includes(titleQuery.toLowerCase()) && OnlyLocationLower.includes(locationQuery.toLowerCase())) {
+    if(OnlyTitleLower.includes(titleQuery.toLowerCase()) && OnlyLocationLower.includes(locationQuery.toLowerCase())) {
       count = count + 1
       result.push(jobs[i])
     }
@@ -145,7 +145,7 @@ function Search(titleQuery, locationQuery) {
   result, count }
   return object 
   
-  
+  // return [result, count]
 }
 //const data = Search("dev", "us")
 //console.log(data)
@@ -160,28 +160,43 @@ const Lista = function () {
  
     // cancello la lista ad ogni click
     newOL.innerHTML = "";
+
     // creo una variabile x ogni input text 
     let titolo = document.querySelector("#title_type")
     let luogo = document.querySelector("#location_type")
-    // la funzione search iterà un array contenente i lavori trovati
+
+    // la funzione search itererà un array contenente i lavori trovati
     let data = Search(titolo.value, luogo.value)
+
     // estrapolo i lavori dall' oggetto ottenuto dalla funzione search
     let risultati = data.result
-    // creo un ciclo per scrivere nella lista ogni lavoro trovato da Search
-    for (let i = 0; i < risultati.length; i++) {
+    // creo un <p> da usare nell'if seguente
+    let newP = document.createElement("p")
+      newOL.appendChild(newP)
 
-    let text_lavoro = "LAVORO" + " " + risultati[i].title
-    let text_luogo = "LUOGO:" + " " + risultati[i].location
-    let newLI = document.createElement("li")
-    newOL.appendChild(newLI)
-    let newUL = document.createElement("ul")
-    newLI.appendChild(newUL)
-    let newLI_title = document.createElement("li")
-    newUL.appendChild(newLI_title)
-    newLI_title.innerText = text_lavoro
-    let newLI_position = document.createElement("li")
-    newUL.appendChild(newLI_position)
-    newLI_position.innerText = text_luogo
+  // se gli input non vengono compilati restituisci p 
+    if ((titolo.value == "")&&(luogo.value == "")) {
+      newP.innerText = "Compila correttamente tutti i campi!"
+
+    } else if (risultati.length === 0){
+      newP.innerText = "Non ci sono lavori con i parametri inseriti"
+      
+    } else {
+      // creo un ciclo per scrivere nella lista ogni lavoro trovato da Search
+      for (let i = 0; i < risultati.length; i++) {
+      let text_lavoro = "LAVORO" + " " + risultati[i].title
+      let text_luogo = "LUOGO:" + " " + risultati[i].location
+      let newLI = document.createElement("li")
+      newOL.appendChild(newLI)
+      let newUL = document.createElement("ul")
+      newLI.appendChild(newUL)
+      let newLI_title = document.createElement("li")
+      newUL.appendChild(newLI_title)
+      newLI_title.innerText = text_lavoro
+      let newLI_position = document.createElement("li")
+      newUL.appendChild(newLI_position)
+      newLI_position.innerText = text_luogo
+    }
     
 
   }
