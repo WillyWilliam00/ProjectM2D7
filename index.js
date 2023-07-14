@@ -145,7 +145,7 @@ function Search(titleQuery, locationQuery) {
   result, count }
   return object 
   
-  // return [result, count]
+
 }
 //const data = Search("dev", "us")
 //console.log(data)
