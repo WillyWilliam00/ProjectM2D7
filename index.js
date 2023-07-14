@@ -175,17 +175,20 @@ const Lista = function () {
       newOL.appendChild(newP)
 
  
-
+    // se non ci sono risultati allora mostra
     if (risultati.length === 0){
       newP.innerText = "Non ci sono lavori con i parametri inseriti"
      
     } else {
-      // creo un ciclo per scrivere nella lista ogni lavoro trovato da Search
+      
+      // se c'è un risultato mostra
       if (risultati.length === 1){
         newP.innerText = "Abbiamo trovato " + risultati.length + " lavoro!"}
-        else {
+        else {// se ci sono piu risultati  mostra
         newP.innerText = "Abbiamo trovato " + risultati.length + " lavori!"
         }
+
+      // creo un ciclo per scrivere nella lista ogni lavoro trovato da Search
       for (let i = 0; i < risultati.length; i++) {
       let text_lavoro = "LAVORO" + " " + risultati[i].title
       let text_luogo = "LUOGO:" + " " + risultati[i].location
