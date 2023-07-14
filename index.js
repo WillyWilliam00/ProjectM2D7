@@ -170,19 +170,22 @@ const Lista = function () {
 
     // estrapolo i lavori dall' oggetto ottenuto dalla funzione search
     let risultati = data.result
-    // creo un <p> da usare nell'if seguente
+    //creo un <p> da usare nell'if seguente
     let newP = document.createElement("p")
       newOL.appendChild(newP)
 
-  // se gli input non vengono compilati restituisci p 
-    if ((titolo.value == "")&&(luogo.value == "")) {
-      newP.innerText = "Compila correttamente tutti i campi!"
+ 
 
-    } else if (risultati.length === 0){
+    if (risultati.length === 0){
       newP.innerText = "Non ci sono lavori con i parametri inseriti"
-      
+     
     } else {
       // creo un ciclo per scrivere nella lista ogni lavoro trovato da Search
+      if (risultati.length === 1){
+        newP.innerText = "Abbiamo trovato " + risultati.length + " lavoro!"}
+        else {
+        newP.innerText = "Abbiamo trovato " + risultati.length + " lavori!"
+        }
       for (let i = 0; i < risultati.length; i++) {
       let text_lavoro = "LAVORO" + " " + risultati[i].title
       let text_luogo = "LUOGO:" + " " + risultati[i].location
